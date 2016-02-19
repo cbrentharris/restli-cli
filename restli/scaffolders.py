@@ -1,15 +1,25 @@
 import os
 from jinja2 import Environment, Environment, PackageLoader
 
-class PegasusScaffolder(object):
+class Scaffolder(object):
+
+    def __init__(self, args):
+        self.name = args.name
+
+class PegasusScaffolder(Scaffolder):
     pass
 
-class ResourceScaffolder(object):
+class ResourceScaffolder(Scaffolder):
     pass
 
-class ProjectScaffolder(object):
+class ProjectScaffolder(Scaffolder):
+    
+    def scaffold(self):
+        self.gen_project_structure()
+        self.gen_gradle_build_files()
 
-    def gen_project_structure(self, project_name):
+    def gen_project_structure(self):
+        project_name = self.name
         root = os.path.join(os.getcwd(), project_name)
         if not os.path.exists(root):
             os.makedirs(root)
@@ -27,7 +37,8 @@ class ProjectScaffolder(object):
             if not os.path.exists(os.path.join(server_dir, 'src', 'main', server_subdir)):
                 os.makedirs(os.path.join(server_dir, 'src', 'main', server_subdir))
 
-    def gen_gradle_build_files(self, project_name):
+    def gen_gradle_build_files(self):
+        project_name = self.name
         env = Environment(loader=PackageLoader('restli', 'templates'))
         with open(os.path.join(os.getcwd(), project_name, 'api', 'build.gradle'), 'w') as api_gradle_build:
             template = env.get_template('api_build.gradle')
