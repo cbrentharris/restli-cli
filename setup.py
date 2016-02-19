@@ -15,7 +15,8 @@ config = {
         'name': 'restli',
         'test_suite': 'nose.collector',
         'tests_require': ['nose', 'mock'],
-        'entry_points': { 'console_scripts' : ['restli=restli.command_line:main']}
+        'entry_points': { 'console_scripts' : ['restli=restli.command_line:main']},
+        'include_package_data': True,
 }
 
 setup(**config)
