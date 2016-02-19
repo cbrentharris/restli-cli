@@ -15,6 +15,7 @@ config = {
         'name': 'restli'
         'test_suite': 'nose.collector',
         'tests_require': ['nose'],
+        'entry_points': { 'console_scripts' : ['restli=restli.command_line:main']}
 }
 
 setup(**config)
