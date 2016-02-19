@@ -6,11 +6,6 @@ class Scaffolder(object):
     def __init__(self, args):
         self.name = args.name
 
-class PegasusScaffolder(Scaffolder):
-    pass
-
-class ResourceScaffolder(Scaffolder):
-    pass
 
 class ProjectScaffolder(Scaffolder):
     
