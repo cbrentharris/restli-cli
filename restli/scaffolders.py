@@ -40,25 +40,22 @@ class ProjectScaffolder(Scaffolder):
     def gen_gradle_build_files(self):
         project_name = self.name
         env = Environment(loader=PackageLoader('restli', 'templates'))
-        with open(os.path.join(os.getcwd(), project_name, 'api', 'build.gradle'), 'w') as api_gradle_build:
-            template = env.get_template('api_build.gradle')
-            api_gradle_build.write(template.render({}))
+        root = os.path.join(os.getcwd(), project_name)
+        gradles_to_build = [
+                (os.path.join(root, 'api', 'build.gradle'), 'api_build.gradle'),
+                (os.path.join(root, 'server', 'settings.gradle'), 'server_settings.gradle'),
+                (os.path.join(root, 'build.gradle'), 'toplevel_build.gradle'),
+                (os.path.join(root, 'settings.gradle'), 'toplevel_settings.gradle'),
+        ]
+        for file_path, template_name in gradles_to_build:
+            with open(file_path, 'w') as gradle_file:
+                template = env.get_template(template_name)
+                # TODO: Determine if any of these templates will need context variables.
+                gradle_file.write(template.render({}))
 
         with open(os.path.join(os.getcwd(), project_name, 'server', 'build.gradle'), 'w') as server_gradle_build:
             template = env.get_template('server_build.gradle')
             #TODO: fix package name with DI?
             server_gradle_build.write(template.render({'package': 'some.fake.package'}))
-
-        with open(os.path.join(os.getcwd(), project_name, 'server', 'settings.gradle'), 'w') as server_gradle_settings:
-            template = env.get_template('server_settings.gradle')
-            server_gradle_settings.write(template.render({}))
-
-        with open(os.path.join(os.getcwd(), project_name, 'build.gradle'), 'w') as toplevel_gradle_build:
-            template = env.get_template('toplevel_build.gradle')
-            toplevel_gradle_build.write(template.render({}))
-
-        with open(os.path.join(os.getcwd(), project_name, 'settings.gradle'), 'w') as toplevel_gradle_settings:
-            template = env.get_template('toplevel_settings.gradle')
-            toplevel_gradle_settings.write(template.render({}))
 
 
