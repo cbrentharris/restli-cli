@@ -1,0 +1,5 @@
+recursive-include restli *.py
+recursive-include restli *.pickle
+include README.md
+include LICENSE.txt
+include requirements.txt

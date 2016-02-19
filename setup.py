@@ -13,6 +13,8 @@ config = {
         'packages': ['restli'],
         'scripts':[],
         'name': 'restli'
+        'test_suite': 'nose.collector',
+        'tests_require': ['nose'],
 }
 
 setup(**config)
