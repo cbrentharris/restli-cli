@@ -4,7 +4,7 @@ from jinja2 import Environment, Environment, PackageLoader
 class Scaffolder(object):
 
     def __init__(self, args):
-        self.name = args.name
+        self.name, self.package = args.scaffold.split(" ")
 
 
 class ProjectScaffolder(Scaffolder):
@@ -51,6 +51,6 @@ class ProjectScaffolder(Scaffolder):
         with open(os.path.join(os.getcwd(), project_name, 'server', 'build.gradle'), 'w') as server_gradle_build:
             template = env.get_template('server_build.gradle')
             #TODO: fix package name with DI?
-            server_gradle_build.write(template.render({'package': 'some.fake.package'}))
+            server_gradle_build.write(template.render({ 'package': self.package }))
 
 

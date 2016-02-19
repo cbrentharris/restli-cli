@@ -3,8 +3,7 @@ from restli.scaffolders import ProjectScaffolder
 
 def create_parser():
     parser = argparse.ArgumentParser(description="A command line tool for restli projects.")
-    parser.add_argument('-s', '--scaffold', help="Scaffold a new restli project", action='store_true')
-    parser.add_argument('-n', '--name', help="Name of the project")
+    parser.add_argument('-s', '--scaffold', help="Scaffold a new restli project. usage: --scaffold [name] [package]")
     return parser
 
 def main():
