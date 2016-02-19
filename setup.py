@@ -12,9 +12,9 @@ config = {
         'install_requires': ['nose'],
         'packages': ['restli'],
         'scripts':[],
-        'name': 'restli'
+        'name': 'restli',
         'test_suite': 'nose.collector',
-        'tests_require': ['nose'],
+        'tests_require': ['nose', 'mock'],
         'entry_points': { 'console_scripts' : ['restli=restli.command_line:main']}
 }
 
