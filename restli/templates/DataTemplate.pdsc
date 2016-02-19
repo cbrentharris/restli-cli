@@ -4,8 +4,8 @@
   "namespace": "{{schema.namespace}}",
   "doc": "{{schema.doc}}",
   "fields": [
-  {% for field in schema.fields %}
-    {"name": "{{field.name}}", "type": "{{field.type}}", "doc": "{{field.doc}}"} {% if not loop.last %},{% endif %}
+  {% for name, type in schema.fields %}
+    {"name": "{{name}}", "type": "{{type}}", "doc": ""} {% if not loop.last %},{% endif %}
   {% endfor %}
   ]
 }
