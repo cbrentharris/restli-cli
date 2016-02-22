@@ -32,5 +32,23 @@ class PegasusGenerator(object):
 class ResourceGenerator(object):
 
     def __init__(self, args):
-        pass
+        self.methods = args.methods.split(" ")
+        self.namespace = args.namespace
+        self.name = args.name
+
+    def generate(self):
+        resource_root_dir = self.find_resource_directory()
+        resource_file_dir = os.path.join(os.path.join(resource_root_dir, *self.namespace.split(".")), self.name.lower(), "impl")
+        if not os.path.exists(resource_file_dir):
+            os.makedirs(resource_file_dir)
+        with open(os.path.join(resource_file_dir, "{}sResource.java".format(self.name)), 'w') as resource_file:
+            env = Environment(loader=PackageLoader('restli', 'templates'))
+            template = env.get_template("Resource.java")
+            resource_file.write(template.render({ 'resource' : self }))
+
+    def find_resource_directory(self):
+        for dir_name, _, _ in os.walk(os.getcwd()):
+            if dir_name.endswith('server/src/main/java'):
+                return dir_name
+        raise Exception("No server directory found in cwd. Please run restli --scaffold [project-name] [namespace] to generate a restli directory structure")
 

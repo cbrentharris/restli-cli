@@ -1,6 +1,6 @@
 import argparse
 from restli.scaffolders import ProjectScaffolder
-from restli.generators import PegasusGenerator
+from restli.generators import PegasusGenerator, ResourceGenerator
 
 def create_parser():
     parser = argparse.ArgumentParser(description="A command line tool for restli projects.")
@@ -11,6 +11,7 @@ def create_parser():
     parser.add_argument('-f', '--fields', help="The fields included in your pegasus schema")
     parser.add_argument('-d', '--doc', help="The doc for the pegasus schema")
     parser.add_argument('-ns', '--namespace', help="The namespace for the pegasus schema")
+    parser.add_argument('-m', '--methods', help="The CRUD methods to implement for your resource")
     return parser
 
 def main():
@@ -23,8 +24,8 @@ def main():
         generator = PegasusGenerator(args)
         generator.generate()
     elif args.generate == 'resource':
-        pass
-
+        generator = ResourceGenerator(args)
+        generator.generate()
 
 if __name__ == "__main__":
     main()
