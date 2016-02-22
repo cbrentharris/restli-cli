@@ -10,6 +10,7 @@ def create_parser():
     parser.add_argument('-t', '--type', help="Type of the restli pegasus schema")
     parser.add_argument('-f', '--fields', help="The fields included in your pegasus schema")
     parser.add_argument('-d', '--doc', help="The doc for the pegasus schema")
+    parser.add_argument('-ns', '--namespace', help="The namespace for the pegasus schema")
     return parser
 
 def main():
@@ -17,7 +18,7 @@ def main():
     args = parser.parse_args()
     if args.scaffold:
         scaffolder = ProjectScaffolder(args)
-        scafffolder.scaffold()
+        scaffolder.scaffold()
     elif args.generate == 'pegasus':
         generator = PegasusGenerator(args)
         generator.generate()
