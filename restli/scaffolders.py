@@ -1,5 +1,5 @@
 import os
-from jinja2 import Environment, Environment, PackageLoader
+from jinja2 import Environment, PackageLoader
 
 class Scaffolder(object):
 
