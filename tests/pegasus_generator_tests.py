@@ -12,7 +12,7 @@ class PegasusGeneratorTest(BaseTest):
         args.name = "Fortune"
         args.namespace = self.package
         args.fields = "message:string id:long person:string"
-        args.schema_type = "record"
+        args.type = "record"
         generator = PegasusGenerator(args)
         generator.generate()
         pegasus_path = os.path.join(self.project_name, 'api', 'src', 'main', 'pegasus', *self.package.split("."))

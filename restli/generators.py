@@ -5,7 +5,7 @@ class PegasusGenerator(object):
 
     def __init__(self, args):
         self.name = args.name
-        self.schema_type = args.schema_type
+        self.type = args.type
         self.namespace = args.namespace
         self.fields = []
         for field in args.fields.split(" "):
