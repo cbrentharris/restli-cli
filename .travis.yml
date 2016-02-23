@@ -6,6 +6,10 @@ python:
   - "3.5"
   - "3.5-dev" # 3.5 development branch
   - "nightly" # currently points to 3.6-dev
+before_install:
+  - sudo add-apt-repository ppa:cwchien/gradle
+  - sudo apt-get update
+  - sudo apt-get install gradle
 # command to install dependencies
 install: 
   - pip install -r requirements.txt
