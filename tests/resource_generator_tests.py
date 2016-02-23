@@ -42,8 +42,18 @@ class ResourceGeneratorTest(BaseTest):
         with open(os.path.join(self.random_dir, self.resource_path(), 'foo', 'impl', 'FoosResource.java'), 'r') as resource_file:
             self.assertTrue('update' in resource_file.read())
 
+    def test_it_creates_a_test_resource_file(self):
+        generator_args = ['restli', '--generate', 'Foo', '--namespace', self.package, '--methods', 'get']
+        generator = self.new_resource_generator(generator_args)
+        generator.generate()
+        self.assertTrue(os.path.exists(os.path.join(self.random_dir, self.test_resource_path(), 'foo', 'TestFoosResource.java')))
+
+
     def resource_path(self):
         return os.path.join(self.project_name, 'server', 'src', 'main', 'java', *self.package.split("."))
+
+    def test_resource_path(self):
+        return os.path.join(self.project_name, 'server', 'src', 'test', 'java', *self.package.split('.'))
 
     def new_resource_generator(self, args):
         with mock.patch('sys.argv', args):

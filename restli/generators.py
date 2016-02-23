@@ -58,4 +58,11 @@ class ResourceGenerator(Generator):
         resource_file_name = "{}sResource.java".format(self.name)
         self.generate_file(resource_file_name, resource_file_dir, 'Resource.java', 'resource')
 
+        resource_test_root_dir = find_directory('server/src/test/java')
+        resource_test_dir = os.path.join(os.path.join(resource_test_root_dir, *self.namespace.split(".")), self.name.lower())
+        if not os.path.exists(resource_test_dir):
+            os.makedirs(resource_test_dir)
+        resource_test_file_name = "Test{}sResource.java".format(self.name)
+        self.generate_file(resource_test_file_name, resource_test_dir, "TestResource.java", "resource")
+
 
