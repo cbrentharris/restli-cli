@@ -1,7 +1,6 @@
 #Restli CLI
 
 A python package for helping with creating a boilerplate restli project
-
 ===
 
 ###SCAFFOLDING
