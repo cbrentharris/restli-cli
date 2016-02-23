@@ -19,7 +19,7 @@ def main():
     if args.scaffold:
         scaffolder = ProjectScaffolder(args)
         scaffolder.scaffold()
-    elif args.generate:
+    if args.generate:
         pegasus_generator = PegasusGenerator(args)
         pegasus_generator.generate()
         resource_generator = ResourceGenerator(args)
