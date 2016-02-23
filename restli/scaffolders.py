@@ -1,5 +1,6 @@
 import os
 from jinja2 import Environment, PackageLoader
+from restli.utils import OutputMessages, logger
 
 class Scaffolder(object):
 
@@ -13,6 +14,8 @@ class ProjectScaffolder(Scaffolder):
     def scaffold(self):
         self.gen_project_structure()
         self.gen_gradle_build_files()
+        logger.info("\tGenerated project structure: ")
+        logger.info("\n" + OutputMessages.tree(os.path.join(os.getcwd(), self.name)))
 
     def gen_project_structure(self):
         project_name = self.name
