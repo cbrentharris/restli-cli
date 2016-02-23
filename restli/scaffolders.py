@@ -36,6 +36,9 @@ class ProjectScaffolder(Scaffolder):
             if not os.path.exists(os.path.join(server_dir, 'src', 'main', server_subdir)):
                 os.makedirs(os.path.join(server_dir, 'src', 'main', server_subdir))
 
+        if not os.path.exists(os.path.join(server_dir, 'src', 'test', 'java')):
+            os.makedirs(os.path.join(server_dir, 'src', 'test', 'java'))
+
     def gen_gradle_build_files(self):
         project_name = self.name
         env = Environment(loader=PackageLoader('restli', 'templates'))

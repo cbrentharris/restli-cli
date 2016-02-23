@@ -14,6 +14,7 @@ class ProjectScaffolderTest(BaseTest):
                 os.path.join(self.project_name, 'server'),
                 os.path.join(self.project_name, 'server', 'src', 'main', 'java'),
                 os.path.join(self.project_name, 'server', 'src', 'main', 'mainGeneratedRest'),
+                os.path.join(self.project_name, 'server', 'src', 'test', 'java'),
         ]
         self.scaffolder.gen_project_structure()
         for _dir in desired_project_folders:
