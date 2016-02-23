@@ -6,6 +6,7 @@ dependencies {
   compile project(path: ':api', configuration: 'dataTemplate')
   compile spec.product.pegasus.restliServer
   compile spec.product.pegasus.restliNettyStandalone
+  testCompile 'junit:junit:4.12'
 }
 
 task startFortunesServer(type: JavaExec) {
