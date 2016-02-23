@@ -10,7 +10,7 @@ A python package for helping with creating a boilerplate restli project
 restli --scaffold my_project --namespace com.example
 ```
 
-Will generate a new restli project layout under the directory named `my_project` with the layout below.
+Will scaffold a new restli project layout under the directory named `my_project` with the layout below:
 
 ```
 └── my_project
