@@ -29,7 +29,7 @@ Will generate a new restli project layout under the directory named `my_project`
     │           ├── java
     │           └── mainGeneratedRest
     └── settings.gradle
-    ```
+```
 
 
 GENERATION
