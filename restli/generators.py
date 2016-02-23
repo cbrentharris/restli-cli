@@ -1,6 +1,6 @@
 import os
 from jinja2 import Environment, PackageLoader
-from restli.utils import OutputMessages, logger
+from restli.utils import OutputMessages, logger, user_input
 
 class PegasusGenerator(object):
 
@@ -25,7 +25,7 @@ class PegasusGenerator(object):
         need_to_prompt = os.path.exists(pegasus_file_full_path)
         if need_to_prompt:
             question = OutputMessages.WOULD_YOU_LIKE_TO_OVERWRITE.format(pegasus_file_name, pegasus_file_dir)
-            response = input(question)
+            response = user_input(question)
         if not need_to_prompt or response == 'y':
             with open(pegasus_file_full_path, 'w') as pegasus_file:
                 env = Environment(loader=PackageLoader('restli', 'templates'))
@@ -61,7 +61,7 @@ class ResourceGenerator(object):
         need_to_prompt = os.path.exists(resource_file_full_path)
         if need_to_prompt:
             question = OutputMessages.WOULD_YOU_LIKE_TO_OVERWRITE.format(resource_file_name, resource_file_dir)
-            response = input(question)
+            response = user_input(question)
         if not need_to_prompt or response == 'y':
             with open(resource_file_full_path, 'w') as resource_file:
                 env = Environment(loader=PackageLoader('restli', 'templates'))

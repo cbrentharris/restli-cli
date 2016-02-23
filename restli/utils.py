@@ -4,6 +4,15 @@ import os
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('restli')
 
+"""
+raw_input for python 2.7 or input for 3+ to prompt the user. 
+"""
+def user_input(text):
+    try:
+        return raw_input(text)
+    except NameError:
+        return input(text)
+
 class OutputMessages(object):
 
     GENERATING = """
