@@ -2,7 +2,27 @@ import os
 from jinja2 import Environment, PackageLoader
 from restli.utils import OutputMessages, logger, user_input
 
-class PegasusGenerator(object):
+class Generator(object):
+    
+    TEMPLATE_ENV = Environment(loader=PackageLoader('restli', 'templates'))
+
+    def generate_file(self, file_name, directory, template_name, template_var):
+        full_file_path = os.path.join(directory, file_name)
+        need_to_prompt = os.path.exists(full_file_path)
+        if need_to_prompt:
+            question = OutputMessages.WOULD_YOU_LIKE_TO_OVERWRITE.format(file_name, directory)
+            response = user_input(question)
+        if not need_to_prompt or response == 'y':
+            with open(full_file_path, 'w') as output_file:
+                template = self.TEMPLATE_ENV.get_template(template_name)
+                if not need_to_prompt:
+                    logger.info(OutputMessages.GENERATING.format(full_file_path))
+                else:
+                    logger.info(OutputMessages.OVERWRITING.format(full_file_path))
+                output_file.write(template.render({ template_var : self }))
+
+
+class PegasusGenerator(Generator):
 
     def __init__(self, args):
         self.name = args.generate
@@ -20,21 +40,7 @@ class PegasusGenerator(object):
         if not os.path.exists(pegasus_file_dir):
             os.makedirs(pegasus_file_dir)
         pegasus_file_name = "{}.pdsc".format(self.name) 
-        pegasus_file_full_path = os.path.join(pegasus_file_dir, pegasus_file_name)
-        # We don't want to overwrite an existing pdsc file if it already exists
-        need_to_prompt = os.path.exists(pegasus_file_full_path)
-        if need_to_prompt:
-            question = OutputMessages.WOULD_YOU_LIKE_TO_OVERWRITE.format(pegasus_file_name, pegasus_file_dir)
-            response = user_input(question)
-        if not need_to_prompt or response == 'y':
-            with open(pegasus_file_full_path, 'w') as pegasus_file:
-                env = Environment(loader=PackageLoader('restli', 'templates'))
-                template = env.get_template('DataTemplate.pdsc')
-                if not need_to_prompt:
-                    logger.info(OutputMessages.GENERATING.format(pegasus_file_full_path))
-                else:
-                    logger.info(OutputMessages.OVERWRITING.format(pegasus_file_full_path))
-                pegasus_file.write(template.render({ 'schema' : self }))
+        self.generate_file(pegasus_file_name, pegasus_file_dir, 'DataTemplate.pdsc', 'schema')
 
     def find_pegasus_directory(self):
         for dir_name, _, _ in os.walk(os.getcwd()):
@@ -43,7 +49,7 @@ class PegasusGenerator(object):
         raise Exception(OutputMessages.NO_DIRECTORY_FOUND.format('pegasus'))
 
 
-class ResourceGenerator(object):
+class ResourceGenerator(Generator):
 
     def __init__(self, args):
         self.methods = args.methods.split(" ")
@@ -56,21 +62,7 @@ class ResourceGenerator(object):
         if not os.path.exists(resource_file_dir):
             os.makedirs(resource_file_dir)
         resource_file_name = "{}sResource.java".format(self.name)
-        resource_file_full_path = os.path.join(resource_file_dir, resource_file_name)
-        # We don't want to overwrite an existing java file if it already exists
-        need_to_prompt = os.path.exists(resource_file_full_path)
-        if need_to_prompt:
-            question = OutputMessages.WOULD_YOU_LIKE_TO_OVERWRITE.format(resource_file_name, resource_file_dir)
-            response = user_input(question)
-        if not need_to_prompt or response == 'y':
-            with open(resource_file_full_path, 'w') as resource_file:
-                env = Environment(loader=PackageLoader('restli', 'templates'))
-                template = env.get_template("Resource.java")
-                if not need_to_prompt:
-                    logger.info(OutputMessages.GENERATING.format(resource_file_full_path))
-                else:
-                    logger.info(OutputMessages.OVERWRITING.format(resource_file_full_path))
-                resource_file.write(template.render({ 'resource' : self }))
+        self.generate_file(resource_file_name, resource_file_dir, 'Resource.java', 'resource')
 
     def find_resource_directory(self):
         for dir_name, _, _ in os.walk(os.getcwd()):
