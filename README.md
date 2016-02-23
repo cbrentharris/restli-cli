@@ -1,6 +1,7 @@
-#Restli CLI
+#Restli CLI [![Build Status](https://travis-ci.org/cbrentharris/restli-cli.svg?branch=master)](https://travis-ci.org/cbrentharris/restli-cli)
 
 A python package for helping with creating a boilerplate restli project
+
 ===
 
 ###SCAFFOLDING
