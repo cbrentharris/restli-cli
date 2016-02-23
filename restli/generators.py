@@ -4,9 +4,10 @@ from jinja2 import Environment, PackageLoader
 class PegasusGenerator(object):
 
     def __init__(self, args):
-        self.name = args.name
+        self.name = args.generate
         self.type = args.type
         self.namespace = args.namespace
+        self.doc = args.doc
         self.fields = []
         for field in args.fields.split(" "):
             self.fields.append(field.split(":"))
@@ -34,7 +35,7 @@ class ResourceGenerator(object):
     def __init__(self, args):
         self.methods = args.methods.split(" ")
         self.namespace = args.namespace
-        self.name = args.name
+        self.name = args.generate
 
     def generate(self):
         resource_root_dir = self.find_resource_directory()

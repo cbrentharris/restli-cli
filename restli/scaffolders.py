@@ -4,7 +4,8 @@ from jinja2 import Environment, PackageLoader
 class Scaffolder(object):
 
     def __init__(self, args):
-        self.name, self.package = args.scaffold.split(" ")
+        self.name = args.scaffold
+        self.package = args.namespace
 
 
 class ProjectScaffolder(Scaffolder):

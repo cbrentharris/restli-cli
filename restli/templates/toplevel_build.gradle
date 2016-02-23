@@ -1,7 +1,7 @@
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 
-pegasusVersion = "1.24.1"
+pegasusVersion = "3.1.2"
 spec = [
   "product" : [
     "pegasus" : [

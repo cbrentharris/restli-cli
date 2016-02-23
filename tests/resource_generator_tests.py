@@ -9,10 +9,9 @@ class ResourceGeneratorTest(BaseTest):
         os.chdir(self.random_dir)
         self.scaffolder.gen_project_structure()
         args = create_parser().parse_args()
-        args.name = "Fortune"
+        args.generate = "Fortune"
         args.namespace = self.package
-        args.methods = "get"
         generator = ResourceGenerator(args)
         generator.generate()
         resource_path = os.path.join(self.project_name, 'server', 'src', 'main', 'java', *self.package.split("."))
-        self.assertTrue(os.path.exists(os.path.join(self.random_dir, resource_path, args.name.lower(), 'impl', args.name + "sResource.java")))
+        self.assertTrue(os.path.exists(os.path.join(self.random_dir, resource_path, args.generate.lower(), 'impl', args.generate + "sResource.java")))

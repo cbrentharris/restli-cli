@@ -9,12 +9,11 @@ class PegasusGeneratorTest(BaseTest):
         os.chdir(self.random_dir)
         self.scaffolder.gen_project_structure()
         args = create_parser().parse_args()
-        args.name = "Fortune"
+        args.generate = "Fortune"
         args.namespace = self.package
         args.fields = "message:string id:long person:string"
-        args.type = "record"
         generator = PegasusGenerator(args)
         generator.generate()
         pegasus_path = os.path.join(self.project_name, 'api', 'src', 'main', 'pegasus', *self.package.split("."))
-        self.assertTrue(os.path.exists(os.path.join(self.random_dir, pegasus_path, args.name.lower(), args.name + ".pdsc")))
+        self.assertTrue(os.path.exists(os.path.join(self.random_dir, pegasus_path, args.generate.lower(), args.generate + ".pdsc")))
 

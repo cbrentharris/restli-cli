@@ -16,7 +16,8 @@ class BaseTest(TestCase):
         self.project_name = "my_project"
         self.package = "com.linkedin"
         scaffolder_args = create_parser().parse_args()
-        scaffolder_args.scaffold = "{} {}".format(self.project_name, self.package)
+        scaffolder_args.scaffold = self.project_name
+        scaffolder_args.namespace = self.package
         self.scaffolder = ProjectScaffolder(scaffolder_args)
         self.random_dir = os.path.join(tempfile.gettempdir(), uuid.uuid4().hex)
         os.makedirs(self.random_dir)
