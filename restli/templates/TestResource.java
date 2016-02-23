@@ -11,6 +11,13 @@ public class Test{{resource.name}}sResource
     {
     }
 
+    {% for method in resource.methods %}
+    @Test
+    public void test{{method.capitalize()}}()
+    {
+    }
+    {% endfor %}
+
     @AfterTest
     public void cleanup()
     {
