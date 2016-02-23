@@ -1,8 +1,8 @@
-===Restli CLI
+#Restli CLI
 
 A python package for helping with creating a boilerplate restli project
-
-SCAFFOLDING
+===
+###SCAFFOLDING
 
 ```
 restli --scaffold my_project --namespace com.example
@@ -32,7 +32,7 @@ Will generate a new restli project layout under the directory named `my_project`
 ```
 
 
-GENERATION
+###GENERATION
 
 ```
 restli --generate Fortune --namespace com.example
