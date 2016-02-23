@@ -47,3 +47,11 @@ class OutputMessages(object):
             for f in files:
                 acc += '{}{}\n'.format(subindent, f)
         return acc
+
+
+def find_directory(target_name):
+    for dir_name, _, _ in os.walk(os.getcwd()):
+        if dir_name.endswith(target_name):
+            return dir_name
+    raise Exception(OutputMessages.NO_DIRECTORY_FOUND.format(dir_name))
+

@@ -1,6 +1,6 @@
 import os
 from jinja2 import Environment, PackageLoader
-from restli.utils import OutputMessages, logger, user_input
+from restli.utils import OutputMessages, logger, user_input, find_directory
 
 class Generator(object):
     
@@ -34,19 +34,13 @@ class PegasusGenerator(Generator):
             self.fields.append(field.split(":"))
 
     def generate(self):
-        pegasus_root_dir = self.find_pegasus_directory()
+        pegasus_root_dir = find_directory('pegasus')
         # A namespace is a java namespace that looks like "com.example"
         pegasus_file_dir = os.path.join(os.path.join(pegasus_root_dir, *self.namespace.split(".")), self.name.lower())
         if not os.path.exists(pegasus_file_dir):
             os.makedirs(pegasus_file_dir)
         pegasus_file_name = "{}.pdsc".format(self.name) 
         self.generate_file(pegasus_file_name, pegasus_file_dir, 'DataTemplate.pdsc', 'schema')
-
-    def find_pegasus_directory(self):
-        for dir_name, _, _ in os.walk(os.getcwd()):
-            if dir_name.endswith('pegasus'):
-                return dir_name
-        raise Exception(OutputMessages.NO_DIRECTORY_FOUND.format('pegasus'))
 
 
 class ResourceGenerator(Generator):
@@ -57,16 +51,11 @@ class ResourceGenerator(Generator):
         self.name = args.generate
 
     def generate(self):
-        resource_root_dir = self.find_resource_directory()
+        resource_root_dir = find_directory('server/src/main/java')
         resource_file_dir = os.path.join(os.path.join(resource_root_dir, *self.namespace.split(".")), self.name.lower(), "impl")
         if not os.path.exists(resource_file_dir):
             os.makedirs(resource_file_dir)
         resource_file_name = "{}sResource.java".format(self.name)
         self.generate_file(resource_file_name, resource_file_dir, 'Resource.java', 'resource')
 
-    def find_resource_directory(self):
-        for dir_name, _, _ in os.walk(os.getcwd()):
-            if dir_name.endswith('server/src/main/java'):
-                return dir_name
-        raise Exception(OutputMessages.NO_DIRECTORY_FOUND.format('server/src/main/java'))
 
