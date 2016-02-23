@@ -17,4 +17,4 @@ GENERATION
 restli --generate Fortune --namespace com.example
 ```
 
-Will generate two restli files for you, a `Fortune.pdsc` and a `FortunesResource.java`
+Will generate two restli files for you, `api/src/main/pegasus/com/linkedin/fortune/Fortune.pdsc` and a `server/src/main/java/com/linkedin/fortune/impl/FortunesResource.java`
