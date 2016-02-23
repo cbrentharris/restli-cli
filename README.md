@@ -8,7 +8,28 @@ SCAFFOLDING
 restli --scaffold my_project --namespace com.example
 ```
 
-Will generate a new restli project layout under the directory named `my_project`
+Will generate a new restli project layout under the directory named `my_project` with the layout below.
+
+```
+└── my_project
+    ├── api
+    │   ├── build.gradle
+    │   └── src
+    │       └── main
+    │           ├── idl
+    │           ├── mainGeneratedDataTemplate
+    │           └── pegasus
+    ├── build.gradle
+    ├── client
+    ├── server
+    │   ├── build.gradle
+    │   ├── settings.gradle
+    │   └── src
+    │       └── main
+    │           ├── java
+    │           └── mainGeneratedRest
+    └── settings.gradle
+    ```
 
 
 GENERATION
