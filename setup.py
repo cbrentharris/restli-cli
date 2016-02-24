@@ -9,7 +9,7 @@ config = {
         'url': 'https://github.com/cbrentharris/restli-cli',
         'download_url': 'https://github.com/cbrentharris/restli-cli/archive/master.zip',
         'author_email': 'cbrentharris@gmail.com',
-        'version': '0.1',
+        'version': '0.2',
         'install_requires': ['nose'],
         'packages': ['restli'],
         'scripts':[],
