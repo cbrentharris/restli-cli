@@ -20,7 +20,7 @@ before_script:
   - unzip /tmp/gradle.zip
   - export PATH=$PATH:$PWD/gradle-1.8/bin/
 script: 
-  - nosetests
+  - nosetests --with-coverage
   - restli -s my_project -g Foo -ns com.example
   - cd my_project
   - gradle build
