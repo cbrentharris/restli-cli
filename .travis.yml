@@ -6,17 +6,17 @@ python:
   - "3.5"
   - "3.5-dev" # 3.5 development branch
   - "nightly" # currently points to 3.6-dev
-before_install:
-  - sudo apt-get update -y
-  - sudo apt-get install default-jre -y
-  - wget https://services.gradle.org/distributions/gradle-1.8-bin.zip -O /tmp/gradle.zip
-  - unzip /tmp/gradle.zip
-  - export PATH=$PATH:$PWD/gradle-1.8-bin/bin/
 # command to install dependencies
 install: 
   - pip install -r requirements.txt
   - python setup.py install
 # command to run tests
+before_script:
+  - sudo apt-get update -y
+  - sudo apt-get install default-jre -y
+  - wget https://services.gradle.org/distributions/gradle-1.8-bin.zip -O /tmp/gradle.zip
+  - unzip /tmp/gradle.zip
+  - export PATH=$PATH:$PWD/gradle-1.8-bin/bin/
 script: 
   - nosetests
   - restli -s my_project -g Foo -ns com.example
