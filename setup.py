@@ -6,7 +6,8 @@ except:
 config = {
         'description': 'Command line tools for scaffolding a Rest.li project',
         'author': 'Christopher Harris',
-        'url': '',
+        'url': 'https://github.com/cbrentharris/restli-cli',
+        'download_url': 'https://github.com/cbrentharris/restli-cli/archive/master.zip',
         'author_email': 'cbrentharris@gmail.com',
         'version': '0.1',
         'install_requires': ['nose'],
