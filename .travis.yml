@@ -7,9 +7,11 @@ python:
   - "3.5-dev" # 3.5 development branch
   - "nightly" # currently points to 3.6-dev
 before_install:
-  - sudo add-apt-repository ppa:cwchien/gradle -y
   - sudo apt-get update -y
-  - sudo apt-get install gradle -y
+  - sudo apt-get install default-jre -y
+  - wget https://services.gradle.org/distributions/gradle-1.8-bin.zip -O /tmp/gradle.zip
+  - unzip /tmp/gradle.zip
+  - export PATH=$PATH:$PWD/gradle-1.8-bin/bin/
 # command to install dependencies
 install: 
   - pip install -r requirements.txt
