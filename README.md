@@ -4,6 +4,18 @@ A python package for creating a boilerplate [restli](https://github.com/linkedin
 
 ===
 
+###INSTALLATION
+```
+pip install restli
+```
+or
+
+```
+git clone git@github.com:cbrentharris/restli-cli.git
+cd restli-cli
+python setup.py install
+```
+
 ###SCAFFOLDING
 
 ```
