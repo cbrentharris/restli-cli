@@ -7,6 +7,8 @@ python:
   - "3.5-dev" # 3.5 development branch
   - "nightly" # currently points to 3.6-dev
 # command to install dependencies
+before_install:
+  - pip install codecov
 install: 
   - pip install -r requirements.txt
   - python setup.py install
@@ -22,3 +24,5 @@ script:
   - restli -s my_project -g Foo -ns com.example
   - cd my_project
   - gradle build
+after_success:
+  - codecov
