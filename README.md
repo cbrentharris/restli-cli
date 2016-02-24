@@ -1,4 +1,4 @@
-#Restli CLI [![Build Status](https://travis-ci.org/cbrentharris/restli-cli.svg?branch=master)](https://travis-ci.org/cbrentharris/restli-cli)
+#Restli CLI [![Build Status](https://travis-ci.org/cbrentharris/restli-cli.svg?branch=master)](https://travis-ci.org/cbrentharris/restli-cli) [![codecov.io](https://codecov.io/github/cbrentharris/restli-cli/coverage.svg?branch=master)](https://codecov.io/github/cbrentharris/restli-cli?branch=master)
 
 A python package for creating a boilerplate [restli](https://github.com/linkedin/rest.li/wiki/Rest.li-User-Guide) project
 
